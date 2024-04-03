@@ -1,0 +1,26 @@
+MembersBorrowRecordsCREATE TABLE Books (
+    BookID INT AUTO_INCREMENT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    Author VARCHAR(255) NOT NULL,
+    PublishedYear INT CHECK (PublishedYear >= 1500),
+    Genre VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Members (
+    MemberID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(255) NOT NULL CHECK (FirstName != ''),
+    LastName VARCHAR(255) NOT NULL CHECK (LastName != ''),
+    Email VARCHAR(255) NOT NULL UNIQUE,
+    MembershipDate DATE DEFAULT (CURRENT_DATE)
+);
+
+CREATE TABLE BorrowRecords (
+    RecordID INT AUTO_INCREMENT PRIMARY KEY,
+    MemberID INT,
+    BookID INT,
+    BorrowDate DATE,
+    ReturnDate DATE,
+    FOREIGN KEY (MemberID) REFERENCES Members(MemberID) ON DELETE CASCADE ON UPDATE NO ACTION,
+    FOREIGN KEY (BookID) REFERENCES Books(BookID) ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
