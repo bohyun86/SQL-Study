@@ -166,3 +166,29 @@
 - 도메인 무결성 제약조건
    - 릴레이션 내 튜플들이 각 속성의 도메인에 지정된 값만 가져야 하는 조건
    - 데이터 타입, null 허용 또는 not null, default, check 제약 조건 등으로 제약조건을 가짐
+
+## CONSTRAINT 제약조건명 (제약조건 이름 명시하기)
+- 제약조건은 생성시 이름을 생략하고 만들 수 있음
+- 생략하고 만들 경우 자동으로 제약조건의 이름이 부여 됨
+- 생성 시 `CONSTRAINT 제약조건명` 이 부여되면, 제약조건 이름을 명시할 수 있음
+- 제약조건의 이름을 확인하기 위해서는 DB객체나 DDL을 확인하면 됨.
+
+```sql
+-- 1. information_schema 오브젝트를 통해 확인
+   -- CONTRAINT_NAME 필드 : 제약조건의 이름
+   SELECT * FROM information_schema.table_constraints
+   WHERE table_name = '테이블명';  -- 테이블명
+
+-- 2. DDL을 통해 확인
+-- SHOW CREATE TABLE 스키마명.테이블명;
+-- 워크벤치의 경우 open value in viewer
+   SHOW CREATE TABLE employees;
+```
+
+- 대량의 샘플 데이터 삽입
+```sql
+INSERT INTO 테이블명 (컬럼명1, 컬럼명2, ...)
+   SELECT문
+```
+   - SELECT문으로 조회한 다른 테이블의 데이터를 대량으로 입력
+   - 테이블의 컬럼과 SELECT문으로 조회한 컬럼의 데이터타입이 일치해야 함.

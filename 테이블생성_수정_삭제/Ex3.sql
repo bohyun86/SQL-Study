@@ -22,9 +22,9 @@ create table Appointments (
 	AppointmentID int primary key auto_increment,
     PatientID int,
     DoctorID int,
-    AppointmentDate date check (Appointmentdate <= current_date() and Year(Appointmentdate) >= 2000),
+    AppointmentDate date CHECK (YEAR(AppointmentDate) >= 2000),
     Status enum('Scheduled', 'Completed', 'Cancelled'),
-    primary key PatientID references,
-    primary key DoctorID references 
+    foreign key (PatientID) references Patients(PatientID),
+    foreign key (DoctorID) references Doctors(DoctorID)
 );
 
