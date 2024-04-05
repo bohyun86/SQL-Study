@@ -33,6 +33,8 @@ WHERE first_name = 'Bezalel' LIMIT 100;
 DELETE FROM employees
 WHERE birth_date >= '1960-01-01';
 
+use ex_insert;
+
 -- 복합 조건 삭제
 DELETE FROM employees
 WHERE first_name = 'Parto' AND last_name = 'Bamford';
