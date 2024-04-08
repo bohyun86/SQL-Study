@@ -355,10 +355,23 @@ WHERE 조건식;
       GROUP BY 그룹기준컬럼명 ..
       WITH ROLLUP
       ```
-      
+
 -- WITH ROLLUP
 -- 각 그룹별 소합계 및 총합계를 계산
 -- 요약 보고서 작성이나 데이터 분석에 사용
 SELECT deptno, job, sum(sal)
 FROM emp
 GROUP BY deptno, job WITH ROLLUP;
+
+- 기본문법
+```sql
+   SELECT 테이블명.컬럼명, ..
+   FROM 테이블명1
+   [INNER|LEFT|RIGHT] JOIN 테이블명2 ON 테이블1.공통컬럼 = 테이블2.공통컬럼
+```
+   - JOIN 다음에 결합한 테이블명
+   - ON 다음에 (join condition)
+   - 일반적으로 테이블명을 줄인 약칭을 사용
+   - JOIN 키워드 앞에 [INNER|LEFT|RIGHT] 생략할 경우 INNER JOIN
+
+   
